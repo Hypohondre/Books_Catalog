@@ -60,9 +60,9 @@ class BookSeeder extends Seeder
                 'year' => $book['year']
             ]);
 
-            DB::table('book_author')->insert([
-                'book' => $bookId,
-                'author' => $authorId
+            DB::table('author_book')->insert([
+                'book_id' => $bookId,
+                'author_id' => $authorId
             ]);
         }
     }

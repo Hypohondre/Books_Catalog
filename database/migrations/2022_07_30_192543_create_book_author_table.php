@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_author', function (Blueprint $table) {
-            $table->bigInteger('book');
-            $table->bigInteger('author');
-            $table->index(['book', 'author'], 'book_author_index');
-            $table->timestamps();
+        Schema::create('author_book', function (Blueprint $table) {
+            $table->bigInteger('book_id');
+            $table->bigInteger('author_id');
+            $table->index(['book_id', 'author_id'], 'book_author_index');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_author');
+        Schema::dropIfExists('author_book');
     }
 };

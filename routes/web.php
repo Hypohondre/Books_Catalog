@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'getAllAuthors']);
+Route::get('/books', [\App\Http\Controllers\BookController::class, 'getAllBooks']);
