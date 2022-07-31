@@ -9,7 +9,10 @@ class Author extends Model
 {
     use HasFactory;
 
-    public function books() {
-        return $this->belongsToMany(Book::class);
+    protected $appends = ['books_count'];
+
+    public function getBooksCountAttribute()
+    {
+        return $this->belongsToMany(Book::class)->count();
     }
 }

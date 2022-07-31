@@ -9,7 +9,8 @@ class BookController extends Controller
     public function getAllBooks()
     {
         $books = Book::all();
+        $authors = Book::with('authors')->get();
 
-        return view('books', ['books' => $books]);
+        return $this->jsonResponse($authors);
     }
 }
