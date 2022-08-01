@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'getAllAuthors']);
 Route::get('/books', [\App\Http\Controllers\BookController::class, 'getAllBooks']);
+Route::get('/books/author/{id}', [\App\Http\Controllers\BookController::class, 'getBooksByAuthor']);

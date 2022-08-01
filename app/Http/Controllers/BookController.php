@@ -13,4 +13,12 @@ class BookController extends Controller
 
         return $this->jsonResponse($authors);
     }
+
+    public function getBooksByAuthor($authorId) {
+        $books = Book::query()
+            ->join('author_book', 'author_book.book_id', '=', 'id')
+            ->where('author_book.author_id', '=', $authorId)
+            ->get();
+        return $this->jsonResponse($books);
+    }
 }
