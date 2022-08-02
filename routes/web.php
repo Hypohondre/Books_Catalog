@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Api\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,6 @@ Route::get('/', function () {
 //Route::get('/books', [\App\Http\Controllers\BookController::class, 'getAllBooks']);
 //Route::get('/books/author/{id}', [\App\Http\Controllers\BookController::class, 'getBooksByAuthor']);
 
-Route::resource('books', \App\Http\Controllers\Api\BooksController::class);
+Route::resource('books', BooksController::class);
+
+Route::get('/books/author/{authorId}', [BooksController::class, 'getByAuthor']);

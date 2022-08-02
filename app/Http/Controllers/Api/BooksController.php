@@ -43,4 +43,9 @@ class BooksController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function getByAuthor($authorId)
+    {
+        return BookResource::collection($this->booksRepository->getBooksByAuthor($authorId));
+    }
 }
