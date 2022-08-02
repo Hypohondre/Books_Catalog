@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\BooksController;
+use \App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/authors', [\App\Http\Controllers\AuthorController::class, 'getAllAuthors']);
-//Route::get('/books', [\App\Http\Controllers\BookController::class, 'getAllBooks']);
-//Route::get('/books/author/{id}', [\App\Http\Controllers\BookController::class, 'getBooksByAuthor']);
-
 Route::resource('books', BooksController::class);
 
 Route::get('/books/author/{authorId}', [BooksController::class, 'getByAuthor']);
+
+Route::get('/authors', [AuthorController::class, 'getAllAuthors']);
