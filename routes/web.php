@@ -19,12 +19,16 @@ use \App\Http\Controllers\AuthorController;
 //    return view('main');
 //});
 
-Route::resource('books', BooksController::class);
+Route::resource('api/books', BooksController::class);
 
-Route::get('/books/author/{authorId}', [BooksController::class, 'getByAuthor']);
+Route::get('/api/books/author/{authorId}', [BooksController::class, 'getByAuthor']);
 
-Route::get('/authors', [AuthorController::class, 'getAllAuthors']);
+Route::get('/api/authors', [AuthorController::class, 'getAllAuthors']);
 
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');
+
+Route::get('/authors/?{id}', function () {
+    return view('main');
+})->where('id', '[0-9]+');

@@ -9,8 +9,12 @@
 </head>
 <body>
     <div id="app">
-        <hello></hello>
+        <nav>
+            <router-link :to="{ name: 'allAuthors' }">Авторы</router-link>
+            <router-link :to="{ name: 'allBooks' }">Книги</router-link>
+        </nav>
+        <app></app>
     </div>
-    <script src="./js/app.js"></script>
+    <script src="{{asset('js/app.js')}}" defer></script>
 </body>
 </html>
