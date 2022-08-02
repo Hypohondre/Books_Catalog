@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookStoreRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Repositories\BooksRepository;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class BooksController extends Controller
 {
@@ -20,30 +21,26 @@ class BooksController extends Controller
         return BookResource::collection($this->booksRepository->all());
     }
 
-    public function store(Request $request)
+    public function store(BookStoreRequest $request)
     {
-//        return $request->all();
-        return new BookResource($this->booksRepository->create($request));
+        return new BookResource($this->booksRepository->create($request->validated()));
     }
 
-    public function show($id)
+    public function show(Book $book)
     {
-        return new BookResource($this->booksRepository->find($id));
-    }
-
-    public function update(Request $request, Book $book)
-    {
-        $book->update($request->all());
         return new BookResource($book);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function update(BookStoreRequest $request, Book $book)
     {
+        $book->update($request->validated());
+        return new BookResource($book);
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

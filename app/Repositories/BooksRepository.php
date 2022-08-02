@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -17,19 +18,8 @@ class BooksRepository implements AbstractRepository
         return Book::query()->findOrFail($id);
     }
 
-    public function create(Request $request)
+    public function create(array $data)
     {
-        return Book::query()->create($request->all());
-    }
-
-    public function update($id, Request $request)
-    {
-        $fields = $request->post();
-        $fields['id'] = $id;
-        return Book::query()->updateOrCreate($fields);
-    }
-
-    public function delete($id)
-    {
+        return Book::query()->create($data);
     }
 }

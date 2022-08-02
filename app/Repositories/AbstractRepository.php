@@ -11,9 +11,5 @@ interface AbstractRepository
 
     public function find($id);
 
-    public function create(Request $request);
-
-    public function update($id, Request $request);
-
-    public function delete($id);
+    public function create(array $data);
 }
