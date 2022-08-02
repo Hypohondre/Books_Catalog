@@ -15,12 +15,16 @@ use \App\Http\Controllers\AuthorController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('main');
+//});
 
 Route::resource('books', BooksController::class);
 
 Route::get('/books/author/{authorId}', [BooksController::class, 'getByAuthor']);
 
 Route::get('/authors', [AuthorController::class, 'getAllAuthors']);
+
+Route::get('/{any}', function () {
+    return view('main');
+})->where('any', '.*');
