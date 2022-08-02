@@ -10,6 +10,7 @@ class Book extends Model
     use HasFactory;
 
     protected $with = ['authors'];
+    protected $fillable = ['title', 'year'];
 
     public function authors() {
         return $this->belongsToMany(Author::class);
